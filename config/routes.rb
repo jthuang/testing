@@ -1,4 +1,6 @@
 GoodlawProd::Application.routes.draw do
+  devise_for :users
+
   get "say/hello"
 
   # The priority is based upon order of creation:

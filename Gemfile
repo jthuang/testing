@@ -11,6 +11,9 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 
+# for user login with Devise
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

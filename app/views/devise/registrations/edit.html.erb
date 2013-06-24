@@ -1,0 +1,36 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-envelope"></i></span>
+    <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+  </div>
+  <br>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-lock"></i></span>
+    <%= f.password_field :password, :placeholder => "Password (levae black if don't want to change.)", :autocomplete => "off" %>
+  </div>
+  <br>
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-lock"></i></span>
+    <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %>
+  </div>
+  <br>
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-lock"></i></span>
+    <%= f.password_field :current_password, :placeholder => "Current Password (to confirm your changes.)" %>
+  </div>
+  <br>
+  <div><%= f.submit "Update", :class => "btn btn-large btn-warning" %></div>
+<% end %>
+
+<h3>Cancel My Account</h3>
+<div><%= button_to "Cancel Account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></div>
+
+<%= link_to "Back", :back %>

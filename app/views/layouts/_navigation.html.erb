@@ -11,9 +11,6 @@
 
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -26,11 +23,19 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
           <ul class="nav pull-right">
-            <li><a href="#">user@goodlaw.tw</a></li>
-            <li><div><%= link_to(raw('<i class="icon-signin"></i> Login'), "#", :class=>"btn btn-primary") %></div></li>
-            <li><div><%= link_to(raw('<i class="icon-pencil"></i> Sign up'), "#", :class=>"btn btn-warning") %></div></li> 
+            <% if current_user && current_user.email %>
+              <li><%= link_to(current_user.username, edit_user_registration_path) %></li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li><div><%= link_to(raw('<i class="icon-signout"></i> Logout'), destroy_user_session_path, :method=> :delete, :class=>"btn btn-large") %></div></li>
+            <% else %>
+              <li><div><%= link_to(raw('<i class="icon-signin"></i> Login'), new_user_session_path, :class=>"btn btn-primary btn-large") %></div></li>
+              <li><div><%= link_to(raw('<i class="icon-pencil"></i> Sign up'), new_user_registration_path, :class=>"btn btn-warning btn-large") %></div></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div><!-- /.navbar-inner -->
